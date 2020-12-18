@@ -12,6 +12,7 @@
         }
 
         table {
+
             align-content: center;
             border-collapse: collapse; /* Убираем двойные линии между ячейками */
         }
@@ -35,35 +36,36 @@
 <h1 th:text=" ${question} + '?'" align="center"></h1>
 
 <div>
-    <form action="/answer2" method="post">
+    <form action="/answer3" method="post">
         <div class="list">
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>1.</td>
-                        <td><input name="answer" type="radio" value="div, a, b, pre, li" required> div, a, b, pre, li</td>
-                    </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td><input name="answer" type="radio" value="p, img, html" required> p, img, html</td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td><input name="answer" type="radio" value="div, p, ul, ol" required> div, p, ul, ol</td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td><input name="answer" type="radio" value="a, b, c, div, li" required> a, b, c, div, li</td>
-                    </tr>
-                    <tr>
-                        <td>5.</td>
-                        <td><input name="answer" type="radio" value="p, div, b, pre, li" required> p, div, b, pre, li</td>
-                    </tr>
-                    </tbody>
+            <table>
+                <tbody>
 
-                </table>
-            </div>
+                <tr>
+                    <td>1.</td>
+                    <td><input name="answer" type="radio" value="p" required>p</td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td><input name="answer" type="radio" value="div" required>div</td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td><input name="answer" type="radio" value="ol" required>ol</td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td><input name="answer" type="radio" value="ul" required>ul</td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td><input name="answer" type="radio" value="select" checked>select</td>
+                </tr>
+                </tbody>
 
+            </table>
+
+        </div>
 
         <div class="button">
             <input type="submit" value="Next" class="btn btn-primary" align="center">

@@ -12,6 +12,7 @@
         }
 
         table {
+
             align-content: center;
             border-collapse: collapse; /* Убираем двойные линии между ячейками */
         }
@@ -35,35 +36,35 @@
 <h1 th:text=" ${question} + '?'" align="center"></h1>
 
 <div>
-    <form action="/answer2" method="post">
+    <form action="/answer5" method="post">
         <div class="list">
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>1.</td>
-                        <td><input name="answer" type="radio" value="div, a, b, pre, li" required> div, a, b, pre, li</td>
-                    </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td><input name="answer" type="radio" value="p, img, html" required> p, img, html</td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td><input name="answer" type="radio" value="div, p, ul, ol" required> div, p, ul, ol</td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td><input name="answer" type="radio" value="a, b, c, div, li" required> a, b, c, div, li</td>
-                    </tr>
-                    <tr>
-                        <td>5.</td>
-                        <td><input name="answer" type="radio" value="p, div, b, pre, li" required> p, div, b, pre, li</td>
-                    </tr>
-                    </tbody>
+            <table>
+                <tbody>
 
-                </table>
-            </div>
+                <tr>
+                    <td>1.</td>
+                    <td><input name="answer" type="radio" value="lb"  required>lb</td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td><input name="answer" type="radio" value="hr"  required>hr</td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td><input name="answer" type="radio" value="i" required>i</td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td><input name="answer" type="radio" value="break" required>break</td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td><input name="answer" type="radio" value="br" required>br</td>
+                </tr>
+                </tbody>
 
+            </table>
+        </div>
 
         <div class="button">
             <input type="submit" value="Next" class="btn btn-primary" align="center">

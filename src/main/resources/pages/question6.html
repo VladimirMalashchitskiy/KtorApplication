@@ -7,12 +7,11 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
 
-        h1{
+        h1 {
             color: #009879;
         }
 
         table {
-
             align-content: center;
             border-collapse: collapse; /* Убираем двойные линии между ячейками */
         }
@@ -36,30 +35,26 @@
 <h1 th:text=" ${question} + '?'" align="center"></h1>
 
 <div>
-    <form action="/answer4" method="post">
+    <form action="/answer6" method="post">
         <div class="list">
             <table>
                 <tbody>
 
                 <tr>
                     <td>1.</td>
-                    <td><input name="answer" type="radio" value="h6" required>h6</td>
+                    <td><input name="answer" type="radio" value="yes" required>yes</td>
                 </tr>
                 <tr>
                     <td>2.</td>
-                    <td><input name="answer" type="radio" value="heading" required>heading</td>
+                    <td><input name="answer" type="radio" value="no" required>no</td>
                 </tr>
                 <tr>
                     <td>3.</td>
-                    <td><input name="answer" type="radio" value="big" required>big</td>
+                    <td><input name="answer" type="radio" value="maybe" required>maybe</td>
                 </tr>
                 <tr>
                     <td>4.</td>
-                    <td><input name="answer" type="radio" value="h1"  required>h1</td>
-                </tr>
-                <tr>
-                    <td>5.</td>
-                    <td><input name="answer" type="radio" value="head" required>head</td>
+                    <td><input name="answer" type="radio" value="I don't know" required>I don't know</td>
                 </tr>
                 </tbody>
 

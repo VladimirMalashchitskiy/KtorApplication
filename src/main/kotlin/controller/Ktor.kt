@@ -17,33 +17,28 @@ fun main() {
 
         val question1 = "What is tag use for new line with space?"
         val question2 = "Whats tags block?"
-
-        var person = Person(name = null, age = null)
+        val question3 = "What tag use for subscriber number list?"
+        val question4 = "Choose the correct HTML element for the largest heading?"
+        val question5 = "What is the correct HTML element for inserting a line break?"
+        val question6 = "Is width=”100” and width=”100%” the same?"
 
         val answers: MutableList<Answer> = mutableListOf()
+        var person = Person(null, null);
 
         routing {
 
             install(Thymeleaf) {
                 setTemplateResolver(
-                        ClassLoaderTemplateResolver().apply {
-                            prefix = "pages/"
-                            suffix = ".html"
-                            characterEncoding = "utf-8"
-                        }
+                    ClassLoaderTemplateResolver().apply {
+                        prefix = "pages/"
+                        suffix = ".html"
+                        characterEncoding = "utf-8"
+                    }
                 )
             }
 
             get("/") {
-                //call.respondFile(File("./src/main/resources/pages/main.html"))
-                call.respondFile(File("./src/main/resources/pages/Test.html"))
-            }
-
-            post("/submitData") {
-                val parameters = call.receiveParameters()
-                val date = parameters["birthday"].toString()
-                call.respondText { "Your birthday " + date }
-
+                call.respondFile(File("./src/main/resources/pages/main.html"))
             }
 
             post("/main") {
@@ -53,7 +48,6 @@ fun main() {
                 person = Person(name = name, age = age)
                 call.respond(ThymeleafContent("question1", mapOf("question" to question1)))
 
-
             }
 
             post("/answer1") {
@@ -62,12 +56,12 @@ fun main() {
                 val answer = parameters["answer"].toString()
 
                 answers.add(
-                        Answer(
-                                numberQuestion = "1",
-                                answerCurrent = answer,
-                                correctAnswer = "p",
-                                question = question1
-                        )
+                    Answer(
+                        numberQuestion = "1",
+                        answerCurrent = answer,
+                        correctAnswer = "p",
+                        question = question1
+                    )
                 )
 
                 call.respond(ThymeleafContent("question2", mapOf("question" to question2)))
@@ -79,68 +73,95 @@ fun main() {
                 val answer = parameters["answer"].toString()
 
                 answers.add(
-                        Answer(
-                                numberQuestion = "2",
-                                answerCurrent = answer,
-                                correctAnswer = "div, p, ul, ol",
-                                question = question2)
+                    Answer(
+                        numberQuestion = "2",
+                        answerCurrent = answer,
+                        correctAnswer = "div, p, ul, ol",
+                        question = question2
+                    )
+                )
+                call.respond(ThymeleafContent("question3", mapOf("question" to question3)))
+
+            }
+
+            post("/answer3") {
+                val parameters = call.receiveParameters()
+                val answer = parameters["answer3"].toString()
+
+
+                answers.add(
+                    Answer(
+                        numberQuestion = "3",
+                        answerCurrent = answer,
+                        correctAnswer = "ol",
+                        question = question3
+                    )
+                )
+
+                call.respond(ThymeleafContent("question4", mapOf("question" to question4)))
+
+            }
+
+            post("/answer4") {
+                val parameters = call.receiveParameters()
+                val answer = parameters["answer4"].toString()
+
+                answers.add(
+                    Answer(
+                        numberQuestion = "4",
+                        answerCurrent = answer,
+                        correctAnswer = "h1",
+                        question = question4
+                    )
+                )
+
+                call.respond(ThymeleafContent("question5", mapOf("question" to question5)))
+
+            }
+
+            post("/answer5") {
+                val parameters = call.receiveParameters()
+                val answer = parameters["answer5"].toString()
+
+
+                answers.add(
+                    Answer(
+                        numberQuestion = "5",
+                        answerCurrent = answer,
+                        correctAnswer = "br",
+                        question = question5
+                    )
+                )
+
+                call.respond(ThymeleafContent("question6", mapOf("question" to question6)))
+
+            }
+
+            post("/answer6") {
+                val parameters = call.receiveParameters()
+                val answer = parameters["answer6"].toString()
+
+
+                answers.add(
+                    Answer(
+                        numberQuestion = "6",
+                        answerCurrent = answer,
+                        correctAnswer = "no",
+                        question = question6
+                    )
                 )
 
                 call.respond(
-                        ThymeleafContent("end",
-                                mapOf("user" to person, "answer" to answers, "result" to getResult(answers)))
+                    ThymeleafContent(
+                        "end",
+                        mapOf("user" to person, "answer" to answers, "result" to getResult(answers))
+                    )
                 )
 
                 answers.clear()
 
-            }
-
-            post("/sign") {
-                val parameters = call.receiveParameters()
-
-                val password = parameters["password"].toString()
-                val login = parameters["login"].toString()
-
-                val user = setPlayer(login = login, password = password)
-
-                val foundedPlayer = users.single { it.role.name == user.role }
-
-                call.respond(ThymeleafContent("user", mapOf("user" to foundedPlayer)))
 
             }
-
-            //get("/reg") { call.respondFile(File("./src/main/resources/pages/registr.html")) }
-
-            post("/data") {
-
-                val parameters = call.receiveParameters()
-
-                val name = parameters["name"].toString()
-                val password = parameters["password"].toString()
-                val login = parameters["login"].toString()
-                val city = parameters["city"].toString()
-                val birthday = parameters["birthday"].toString()
-                val age = parameters["age"].toString()
-                val role = parameters["role"].toString()
-
-                val user = User(
-                        name = name,
-                        password = password,
-                        age = age,
-                        city = city,
-                        birthday = birthday,
-                        login = login,
-                        role = Role.valueOf(role)
-                )
-
-                call.respond(ThymeleafContent("user", mapOf("user" to user)))
-            }
-
-
-            post("/answer4") {
-                val parameters = call.receiveParameters()
-            }
-
         }
     }
     server.start(wait = true)
@@ -152,7 +173,7 @@ private fun getResult(answers: MutableList<Answer>): String {
 
     answers.forEach { if (it.answerCurrent == it.correctAnswer) countTrue++ }
 
-    val temp: Double = if (countTrue != 0.0f) (countTrue / size).toDouble() * 100 else 0.0
+    val temp = if (countTrue != 0.0f) (countTrue / size).toDouble() * 100 else 0.0
 
     return "$temp%"
 }
