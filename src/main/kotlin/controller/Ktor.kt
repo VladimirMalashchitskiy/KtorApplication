@@ -23,7 +23,7 @@ fun main() {
         val question6 = "Is width=”100” and width=”100%” the same?"
 
         val answers: MutableList<Answer> = mutableListOf()
-        var person = Person(null, null);
+        var person = Person(null, null)
 
         routing {
 
@@ -51,7 +51,6 @@ fun main() {
             }
 
             post("/answer1") {
-
 
                 answers.add(Answer(numberQuestion = "1", answerCurrent = getAnswer(call), correctAnswer = "p", question = question1))
 
