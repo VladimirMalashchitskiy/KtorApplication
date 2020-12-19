@@ -52,114 +52,51 @@ fun main() {
 
             post("/answer1") {
 
-                val parameters = call.receiveParameters()
-                val answer = parameters["answer"].toString()
 
-                answers.add(
-                    Answer(
-                        numberQuestion = "1",
-                        answerCurrent = answer,
-                        correctAnswer = "p",
-                        question = question1
-                    )
-                )
+                answers.add(Answer(numberQuestion = "1", answerCurrent = getAnswer(call), correctAnswer = "p", question = question1))
 
                 call.respond(ThymeleafContent("question2", mapOf("question" to question2)))
             }
 
             post("/answer2") {
 
-                val parameters = call.receiveParameters()
-                val answer = parameters["answer"].toString()
+                answers.add(Answer(numberQuestion = "2", answerCurrent = getAnswer(call), correctAnswer = "div, p, ul, ol", question = question2))
 
-                answers.add(
-                    Answer(
-                        numberQuestion = "2",
-                        answerCurrent = answer,
-                        correctAnswer = "div, p, ul, ol",
-                        question = question2
-                    )
-                )
                 call.respond(ThymeleafContent("question3", mapOf("question" to question3)))
 
             }
 
             post("/answer3") {
-                val parameters = call.receiveParameters()
-                val answer = parameters["answer3"].toString()
 
-
-                answers.add(
-                    Answer(
-                        numberQuestion = "3",
-                        answerCurrent = answer,
-                        correctAnswer = "ol",
-                        question = question3
-                    )
-                )
+                answers.add(Answer(numberQuestion = "3", answerCurrent = getAnswer(call), correctAnswer = "ol", question = question3))
 
                 call.respond(ThymeleafContent("question4", mapOf("question" to question4)))
 
             }
 
             post("/answer4") {
-                val parameters = call.receiveParameters()
-                val answer = parameters["answer4"].toString()
 
-                answers.add(
-                    Answer(
-                        numberQuestion = "4",
-                        answerCurrent = answer,
-                        correctAnswer = "h1",
-                        question = question4
-                    )
-                )
+                answers.add(Answer(numberQuestion = "4", answerCurrent = getAnswer(call), correctAnswer = "h1", question = question4))
 
                 call.respond(ThymeleafContent("question5", mapOf("question" to question5)))
 
             }
 
             post("/answer5") {
-                val parameters = call.receiveParameters()
-                val answer = parameters["answer5"].toString()
 
-
-                answers.add(
-                    Answer(
-                        numberQuestion = "5",
-                        answerCurrent = answer,
-                        correctAnswer = "br",
-                        question = question5
-                    )
-                )
+                answers.add(Answer(numberQuestion = "5", answerCurrent = getAnswer(call), correctAnswer = "br", question = question5))
 
                 call.respond(ThymeleafContent("question6", mapOf("question" to question6)))
 
             }
 
             post("/answer6") {
-                val parameters = call.receiveParameters()
-                val answer = parameters["answer6"].toString()
 
+                answers.add(Answer(numberQuestion = "6", answerCurrent = getAnswer(call), correctAnswer = "no", question = question6))
 
-                answers.add(
-                    Answer(
-                        numberQuestion = "6",
-                        answerCurrent = answer,
-                        correctAnswer = "no",
-                        question = question6
-                    )
-                )
-
-                call.respond(
-                    ThymeleafContent(
-                        "end",
-                        mapOf("user" to person, "answer" to answers, "result" to getResult(answers))
-                    )
-                )
+                call.respond(ThymeleafContent("end", mapOf("user" to person, "answer" to answers, "result" to getResult(answers))))
 
                 answers.clear()
-
 
             }
         }
@@ -176,4 +113,10 @@ private fun getResult(answers: MutableList<Answer>): String {
     val temp = if (countTrue != 0.0f) (countTrue / size).toDouble() * 100 else 0.0
 
     return "$temp%"
+}
+
+
+private suspend fun getAnswer(call: ApplicationCall): String {
+    val parameters = call.receiveParameters()
+    return parameters["answer"].toString()
 }
